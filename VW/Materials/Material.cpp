@@ -87,6 +87,11 @@ void Material::write(QJsonObject &json) const
     QJsonArray auxArray3;
     auxArray3.append(Ks[0]);auxArray3.append(Ks[1]);auxArray3.append(Ks[2]);
     json["ks"] = auxArray3;
+
+    QJsonArray auxArray4;
+    auxArray4.append(kt[0]);auxArray4.append(kt[1]);auxArray4.append(kt[2]);
+    json["kt"] = auxArray4;
+
     json["opacity"] = opacity;
     json["shininess"] = shininess;
 }
@@ -100,6 +105,7 @@ void Material::print(int indentation) const
     QTextStream(stdout) << indent << "Ka:\t" << Ka[0] << ", "<< Ka[1] << ", "<< Ka[2] << "\n";
     QTextStream(stdout) << indent << "Kd:\t" << Kd[0] << ", "<< Kd[1] << ", "<< Kd[2] << "\n";
     QTextStream(stdout) << indent << "Ks:\t" << Ks[0] << ", "<< Ks[1] << ", "<< Ks[2] << "\n";
+    QTextStream(stdout) << indent << "Kt:\t" << kt[0] << ", "<< kt[1] << ", "<< kt[2] << "\n";
     QTextStream(stdout) << indent << "shininess:\t" << shininess<< "\n";
     QTextStream(stdout) << indent << "opacity:\t" << opacity<< "\n";
 }

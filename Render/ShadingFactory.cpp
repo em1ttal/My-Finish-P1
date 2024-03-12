@@ -50,4 +50,5 @@ ShadingFactory::SHADING_TYPES ShadingFactory::getIndexType(shared_ptr<ShadingStr
     } else if (dynamic_pointer_cast<NColorShading>(m) != nullptr) {
         return SHADING_TYPES::NCOLORSHADING;
     }
+    return SHADING_TYPES::COLORSHADING;
 }
