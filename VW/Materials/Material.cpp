@@ -59,6 +59,12 @@ void Material::read (const QJsonObject &json)
         Ks[1] = auxVec[1].toDouble();
         Ks[2] = auxVec[2].toDouble();
     }
+    if (json.contains("kt") && json["kt"].isArray()) {
+        QJsonArray auxVec = json["kt"].toArray();
+        kt[0] = auxVec[0].toDouble();
+        kt[1] = auxVec[1].toDouble();
+        kt[2] = auxVec[2].toDouble();
+    }
     if (json.contains("shininess") && json["shininess"].isDouble())
         shininess = json["shininess"].toDouble();
     if (json.contains("opacity") && json["opacity"].isDouble())

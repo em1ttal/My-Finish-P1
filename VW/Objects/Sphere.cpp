@@ -44,7 +44,6 @@ bool Sphere::hit(Ray &raig, float tmin, float tmax) const {
 bool Sphere::allHits(Ray& raig, float tmin, float tmax) const {
 
     shared_ptr<HitRecord> info1 = make_shared<HitRecord>();
-    shared_ptr<HitRecord> info2 = make_shared<HitRecord>();
 
     bool trobat = false;
     vec3 oc = raig.getOrigin() - center;
@@ -64,6 +63,7 @@ bool Sphere::allHits(Ray& raig, float tmin, float tmax) const {
         }
         temp = (-b + sqrt(discriminant)) / a;
         if (temp < tmax && temp > tmin) {
+            shared_ptr<HitRecord> info2 = make_shared<HitRecord>();
             info2->t = temp;
             info2->p = raig.pointAt(info2->t);
             info2->normal = (info2->p - center) / radius;

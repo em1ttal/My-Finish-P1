@@ -88,8 +88,7 @@ vec3 RayTracing::getColorPixel(Ray &ray) {
         } else {
             color = ray.getHit(0) -> mat -> Kd;
         }
-    }
-    
+    }    
     return color;
 }
 

@@ -16,7 +16,7 @@ public slots:
     void loadSettings();
     void activaColorShading();
     void activaNormalShader();
-
+    void activaNColorShader();
 signals:
      void settingsChanged();
 };

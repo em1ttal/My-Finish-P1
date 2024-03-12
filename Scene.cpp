@@ -47,7 +47,8 @@ bool Scene::allHits(Ray& r, float tmin, float tmax) const
     {
         obj->allHits(r, tmin, tmax);
     }
-    for(const auto& hit: r.getHitRecords()){
+    for(const auto& hit: r.getHitRecords())
+    {
         all.push_back(hit);
     }
     sort(all.begin(),all.end(), [](const shared_ptr<HitRecord>& a,
@@ -58,6 +59,7 @@ bool Scene::allHits(Ray& r, float tmin, float tmax) const
     
     return !all.empty();
 }
+
 void Scene::update(int nframe) {
     for (unsigned int i = 0; i< objects.size(); i++) {
         objects[i]->update(nframe);

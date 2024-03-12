@@ -49,7 +49,9 @@ class Ray {
     void  setTmax(float tmax_) {tmax = tmax_;};
     void  addHit(shared_ptr<HitRecord> h) { hits.push_back(h);};
     void addHit0(shared_ptr<HitRecord> h) {hits.insert(hits.begin(),h); };
-    void insertHit(shared_ptr<HitRecord> h){
+    
+    void insertHit(shared_ptr<HitRecord> h)
+    {
       auto begin = hits.begin();
       while (begin != hits.end() && h->t > (*begin)->t){
         ++begin;
@@ -57,6 +59,7 @@ class Ray {
       hits.insert(begin, h);
 
     };
+    
     shared_ptr<HitRecord> getHit(int i) const {return hits[i];};
     vector<shared_ptr<HitRecord>> getHitRecords() const { return hits;};
 

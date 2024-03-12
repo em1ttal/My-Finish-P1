@@ -65,3 +65,11 @@ void Builder::activaNormalShader() {
     } else msgBox.setText("Error creating shading");
     msgBox.exec();
 }
+
+void Builder::activaNColorShader() {
+    QMessageBox msgBox;
+    if (Controller::getInstance()->createShading(ShadingFactory::SHADING_TYPES::NCOLORSHADING)) {
+        msgBox.setText("N-Hits Shading created.");
+    } else msgBox.setText("Error creating shading");
+    msgBox.exec();
+}

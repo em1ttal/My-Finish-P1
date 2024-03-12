@@ -126,6 +126,9 @@ void MainWindow::on_valNHits_stateChanged()
 {
     auto visSetUp = Controller::getInstance()->getSetUp();
     visSetUp->setNHints(ui->valNHits->isChecked());
+    if (ui->valNHits->isChecked()) {
+        builder->activaNColorShader();
+    }
 }
 
 void MainWindow::on_valBoundingVolumes_stateChanged()
