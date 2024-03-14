@@ -68,7 +68,7 @@ bool Sphere::allHits(Ray& raig, float tmin, float tmax) const {
             info2->p = raig.pointAt(info2->t);
             info2->normal = (info2->p - center) / radius;
             info2->mat = material;
-            raig.addHit(info2);
+            raig.insertHit(info2);
             trobat = true;
         }
     }

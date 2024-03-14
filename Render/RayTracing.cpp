@@ -67,7 +67,8 @@ void RayTracing::setPixel(int x, int y, vec3 color) {
 // Funcio recursiva que calcula el color.
 vec3 RayTracing::getColorPixel(Ray &ray) {
 
-    vec3 color = vec3(0);
+    vec3 colorBackground = vec3(0.0f);
+    vec3 color = vec3(0.0f);
     vec3 unit_direction;
     HitRecord info;
     
@@ -77,18 +78,37 @@ vec3 RayTracing::getColorPixel(Ray &ray) {
         vec3 ray2 = normalize(ray.getDirection());
 
         float t = 0.5f * (ray2.y + 1);
-        color = t*colorTop + (1-t)*colorBottom;
-    } else {
-        color = vec3(0,0,0);
+        colorBackground = t*colorTop + (1-t)*colorBottom;
+        color = colorBackground;
     }
 
-    if (scene -> hit(ray, ray.getTmin(), ray.getTmax())) {
-        if (setup -> getShadingStrategy() != nullptr) {
-            color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
-        } else {
-            color = ray.getHit(0) -> mat -> Kd;
+    if (setup -> getNHints()) {
+        if (scene -> allHits(ray, ray.getTmin(), ray.getTmax())) {
+            if (setup -> getShadingStrategy() != nullptr) {
+                color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
+                vec3 factor = ray.getHitRecords()[0] -> mat -> kt;
+                for (int i = 1; i < ray.getHitRecords().size(); i++) {
+                    factor *= ray.getHitRecords()[i] -> mat -> kt;
+                }
+                color += factor * colorBackground;
+            } else {
+                color = ray.getHit(0) -> mat -> Kd;
+            }
         }
-    }    
+    } else {
+        if (scene -> hit(ray, ray.getTmin(), ray.getTmax())) {
+            if (setup -> getShadingStrategy() != nullptr) {
+                color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
+                if (setup -> getNHints()) {
+                    int last = ray.getHitRecords().size() - 1;
+                    vec3 factor = ray.getHitRecords()[last] -> mat -> kt;
+                    color += factor * colorBackground;
+                }
+            } else {
+                color = ray.getHit(0) -> mat -> Kd;
+            }
+        }   
+    } 
     return color;
 }
 
