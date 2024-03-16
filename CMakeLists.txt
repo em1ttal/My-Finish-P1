@@ -101,6 +101,7 @@ set(SOURCES
     VW/Materials/Material.cpp
     VW/Materials/MaterialFactory.cpp
     VW/Materials/Texture.cpp
+    VW/Objects/Box.cpp
     VW/Objects/Face.cpp
     VW/Objects/Mesh.cpp
     VW/Objects/Object.cpp
@@ -142,6 +143,7 @@ set(HEADERS
     VW/Materials/Material.hh
     VW/Materials/MaterialFactory.hh
     VW/Materials/Texture.hh
+    VW/Objects/Box.hh
     VW/Objects/Face.hh
     VW/Objects/Mesh.hh
     VW/Objects/Object.hh
