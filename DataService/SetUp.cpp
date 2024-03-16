@@ -116,7 +116,8 @@ void SetUp::read(const QJsonObject &json)
         softShadows = json["softShadows"].toBool();
     if (json.contains("boundingVolumes") && json["boundingVolumes"].isBool())
         boundingVolumes = json["boundingVolumes"].toBool();
-
+    if (json.contains("multipleHits") && json["multipleHits"].isBool())
+        nHints = json["multipleHits"].toBool();
 }
 //! [0]
 
