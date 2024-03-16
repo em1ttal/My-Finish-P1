@@ -24,6 +24,7 @@ public:
 
     void OneSphere(shared_ptr<Scene> s, vec3 position, float radius);
     void OneBox(shared_ptr<Scene> s, vec3 p1, vec3 p2);
+    void OneTriangle(shared_ptr<Scene> s, vec3 p1, vec3 p2, vec3 p3);
 };
 
 

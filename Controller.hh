@@ -64,8 +64,9 @@ public:
     void setSetUp (shared_ptr<SetUp> v) {  visualSetup = v;}
 
     bool createScene(SceneFactory::SCENE_TYPES currentType, QString name);
-    bool createScene(vec3 position, float radius);
-    bool createScene(vec3 p1, vec3 p2);
+    bool createSceneSphere(vec3 position, float radius);
+    bool createSceneBox(vec3 p1, vec3 p2);
+    bool createSceneTriangle(vec3 p1, vec3 p2, vec3 p3);
     bool createScene();
     bool createScene(int nFrames);
 

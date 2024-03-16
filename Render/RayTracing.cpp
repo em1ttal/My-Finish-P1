@@ -96,19 +96,15 @@ vec3 RayTracing::getColorPixel(Ray &ray) {
             }
         }
     } else {
-        if (scene -> hit(ray, ray.getTmin(), ray.getTmax())) {
-            if (setup -> getShadingStrategy() != nullptr) {
+        if (scene->hit(ray, ray.getTmin(), ray.getTmax())) {
+            // El mètode "hit" desa només el punt més proper a tmin
+            if (setup->getShadingStrategy()!=nullptr) {
                 color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
-                if (setup -> getNHints()) {
-                    int last = ray.getHitRecords().size() - 1;
-                    vec3 factor = ray.getHitRecords()[last] -> mat -> kt;
-                    color += factor * colorBackground;
-                }
             } else {
-                color = ray.getHit(0) -> mat -> Kd;
+                color = ray.getHit(0)->mat->Kd;
             }
-        }   
-    } 
+        }
+    }
     return color;
 }
 

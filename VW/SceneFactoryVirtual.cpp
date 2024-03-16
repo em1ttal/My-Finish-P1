@@ -44,6 +44,12 @@ void SceneFactoryVirtual::OneBox(shared_ptr<Scene> s, vec3 p1, vec3 p2) {
     s->objects.push_back(box);
 }
 
+void SceneFactoryVirtual::OneTriangle(shared_ptr<Scene> s, vec3 p1, vec3 p2, vec3 p3) {
+    auto triangle = make_shared<Triangle>(p1, p2, p3);
+    triangle->setMaterial(make_shared<Lambertian>(vec3(0.5, 0.2, 0.7)));
+    s->objects.push_back(triangle);
+}
+
 //! [3]
 bool SceneFactoryVirtual::load(QString nameFile)
 {

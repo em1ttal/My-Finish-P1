@@ -6,7 +6,7 @@ void Builder::newSphere()
     vec3 position(0.0, 0.0, 0.0);
     float radius = 0.5;
     QMessageBox msgBox;
-    if (Controller::getInstance()->createScene(position, radius))
+    if (Controller::getInstance()->createSceneSphere(position, radius))
             msgBox.setText("One Sphere is created.");
     else msgBox.setText("Not enough memory. Error.");
     msgBox.exec();
@@ -17,8 +17,20 @@ void Builder::newBox()
     vec3 p1(-0.5, -0.5, -0.5);
     vec3 p2(0.5, 0.5, 0.5);
     QMessageBox msgBox;
-    if (Controller::getInstance()->createScene(p1, p2))
+    if (Controller::getInstance()->createSceneBox(p1, p2))
             msgBox.setText("One Box is created.");
+    else msgBox.setText("Not enough memory. Error.");
+    msgBox.exec();
+}
+
+void Builder::newTriangle()
+{
+    vec3 p1(-0.5, 0.0, 0.0);
+    vec3 p2(0.5, 0.0, 0.0);
+    vec3 p3(0, 1, 0);
+    QMessageBox msgBox;
+    if (Controller::getInstance()->createSceneTriangle(p1, p2, p3))
+            msgBox.setText("One Triangle is created.");
     else msgBox.setText("Not enough memory. Error.");
     msgBox.exec();
 }

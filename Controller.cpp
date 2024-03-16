@@ -25,7 +25,7 @@ bool Controller::createScene(SceneFactory::SCENE_TYPES currentType, QString name
     return (scene != nullptr);
 }
 
-bool Controller::createScene(vec3 position, float radius) {
+bool Controller::createSceneSphere(vec3 position, float radius) {
     // Create a single Sphere
     auto sf = make_shared<SceneFactoryVirtual>();
     scene= make_shared<Scene>();
@@ -33,11 +33,19 @@ bool Controller::createScene(vec3 position, float radius) {
     return true;
 }
 
-bool Controller::createScene(vec3 p1, vec3 p2) {
+bool Controller::createSceneBox(vec3 p1, vec3 p2) {
     // Create a single Box
     auto sf = make_shared<SceneFactoryVirtual>();
     scene= make_shared<Scene>();
     sf->OneBox(scene, p1, p2);
+    return true;
+}
+
+bool Controller::createSceneTriangle(vec3 p1, vec3 p2, vec3 p3) {
+    // Create a single Triangle
+    auto sf = make_shared<SceneFactoryVirtual>();
+    scene= make_shared<Scene>();
+    sf->OneTriangle(scene, p1, p2, p3);
     return true;
 }
 

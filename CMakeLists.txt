@@ -108,6 +108,7 @@ set(SOURCES
     VW/Objects/ObjectFactory.cpp
     VW/Objects/Plane.cpp
     VW/Objects/Sphere.cpp
+    VW/Objects/Triangle.cpp
     VW/SceneFactoryVirtual.cpp
     VW/TG/TG.cpp
     VW/TG/TranslateTG.cpp
@@ -150,6 +151,7 @@ set(HEADERS
     VW/Objects/ObjectFactory.hh
     VW/Objects/Plane.hh
     VW/Objects/Sphere.hh
+    VW/Objects/Triangle.hh
     VW/SceneFactoryVirtual.hh
     VW/TG/TG.hh
     VW/TG/TranslateTG.hh
