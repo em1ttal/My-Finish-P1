@@ -96,11 +96,18 @@ void Box::aplicaTG(shared_ptr<TG> tg)
 
 void Box::read(const QJsonObject &json)
 {
-    /*
     Object::read(json);
-    p1 = vec3(json["p1"].toArray()[0].toDouble(), json["p1"].toArray()[1].toDouble(), json["p1"].toArray()[2].toDouble());
-    p2 = vec3(json["p2"].toArray()[0].toDouble(), json["p2"].toArray()[1].toDouble(), json["p2"].toArray()[2].toDouble());
-    */
+    if (json.contains("punt_min") && json["punt_min"].isArray()) 
+    {
+        QJsonArray p1Array = json["punt_min"].toArray();
+        p1 = vec3(p1Array[0].toDouble(), p1Array[1].toDouble(), p1Array[2].toDouble());
+    }
+    
+    if (json.contains("punt_max") && json["punt_max"].isArray()) 
+    {
+        QJsonArray p2Array = json["punt_max"].toArray();
+        p2 = vec3(p2Array[0].toDouble(), p2Array[1].toDouble(), p2Array[2].toDouble());
+    }
 }
 
 void Box::write(QJsonObject &json) const
