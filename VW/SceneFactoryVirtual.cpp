@@ -38,6 +38,12 @@ void SceneFactoryVirtual::OneSphere(shared_ptr<Scene> s, vec3 position, float ra
 
 }
 
+void SceneFactoryVirtual::OneBox(shared_ptr<Scene> s, vec3 p1, vec3 p2) {
+    auto box = make_shared<Box>(p1, p2);
+    box->setMaterial(make_shared<Lambertian>(vec3(0.5, 0.2, 0.7)));
+    s->objects.push_back(box);
+}
+
 //! [3]
 bool SceneFactoryVirtual::load(QString nameFile)
 {

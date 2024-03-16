@@ -99,3 +99,40 @@ void Box::aplicaTG(shared_ptr<TG> tg)
 {
     // No fa res.
 }
+
+void Box::read(const QJsonObject &json)
+{
+    /*
+    Object::read(json);
+    p1 = vec3(json["p1"].toArray()[0].toDouble(), json["p1"].toArray()[1].toDouble(), json["p1"].toArray()[2].toDouble());
+    p2 = vec3(json["p2"].toArray()[0].toDouble(), json["p2"].toArray()[1].toDouble(), json["p2"].toArray()[2].toDouble());
+    */
+}
+
+void Box::write(QJsonObject &json) const
+{
+    /*
+    Object::write(json);
+    QJsonArray p1Array;
+    p1Array.push_back(p1[0]);
+    p1Array.push_back(p1[1]);
+    p1Array.push_back(p1[2]);
+    json["p1"] = p1Array;
+    QJsonArray p2Array;
+    p2Array.push_back(p2[0]);
+    p2Array.push_back(p2[1]);
+    p2Array.push_back(p2[2]);
+    json["p2"] = p2Array;
+    */
+}
+
+void Box::print(int indentation) const
+{
+    /*
+    string i(indentation, ' ');
+    cout << i << "Box" << endl;
+    cout << i << "p1: " << p1 << endl;
+    cout << i << "p2: " << p2 << endl;
+    Object::print(indentation);
+    */
+}

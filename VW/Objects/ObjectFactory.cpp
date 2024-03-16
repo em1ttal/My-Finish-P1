@@ -25,7 +25,9 @@ shared_ptr<Object> ObjectFactory::createObject( QString s, OBJECT_TYPES t) {
     case SPHERE:
         o = make_shared<Sphere>();
         break;
-
+    case BOX:
+        o = make_shared<Box>();
+        break;
     default:
         break;
     }

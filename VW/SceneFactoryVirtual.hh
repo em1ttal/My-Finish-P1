@@ -23,6 +23,7 @@ public:
     bool save(QString nameFile) const;
 
     void OneSphere(shared_ptr<Scene> s, vec3 position, float radius);
+    void OneBox(shared_ptr<Scene> s, vec3 p1, vec3 p2);
 };
 
 

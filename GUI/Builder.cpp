@@ -12,6 +12,17 @@ void Builder::newSphere()
     msgBox.exec();
 }
 
+void Builder::newBox()
+{
+    vec3 p1(-0.5, -0.5, -0.5);
+    vec3 p2(0.5, 0.5, 0.5);
+    QMessageBox msgBox;
+    if (Controller::getInstance()->createScene(p1, p2))
+            msgBox.setText("One Box is created.");
+    else msgBox.setText("Not enough memory. Error.");
+    msgBox.exec();
+}
+
 void Builder::newSimulatedScene()
 {
    QMessageBox msgBox;
