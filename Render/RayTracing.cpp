@@ -87,7 +87,7 @@ vec3 RayTracing::getColorPixel(Ray &ray) {
             if (setup -> getShadingStrategy() != nullptr) {
                 color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
                 vec3 factor = ray.getHitRecords()[0] -> mat -> kt;
-                for (int i = 1; i < ray.getHitRecords().size(); i++) {
+                for (int i = 1; i < ray.getHitRecords().size()-1; i++) {
                     factor *= ray.getHitRecords()[i] -> mat -> kt;
                 }
                 color += factor * colorBackground;

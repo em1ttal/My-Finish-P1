@@ -12,7 +12,7 @@ SetUp::SetUp()
   softShadows = false;
   boundingVolumes = false;
   shadows = false;
-
+  nHints = false;
 }
 
 bool SetUp::load( QString nameFile)

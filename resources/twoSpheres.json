@@ -16,7 +16,7 @@
     "kt": [0.5, 0.5, 0.5],
     "nut": 0.0
     }
-},
+},  
 {
   "name": "Esfera gran",
   "type": "sphere",

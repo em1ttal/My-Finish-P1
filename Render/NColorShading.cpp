@@ -12,7 +12,5 @@ vec3 NColorShading::shading(shared_ptr<Scene> scene, vector<shared_ptr<HitRecord
         color += (vec3(1.0, 1.0, 1.0) - infos[i]->mat->kt) * factor * infos[i]->mat->Kd;
         factor *= infos[i]->mat->kt;
     }
-    // Get color from background and apply formula: colorBackground = 
-    // color += (infos[infos.size()-1]->mat->kt) * colorBackground;
     return color;
 }
