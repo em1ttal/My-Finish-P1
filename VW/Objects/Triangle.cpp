@@ -19,11 +19,11 @@ Triangle::Triangle(vec3 p1, vec3 p2, vec3 p3)
 bool Triangle::hit(Ray &ray, float tmin, float tmax) const
 {
     vec3 edge1 = p2 - p1;
-    vec3 edge2 = p3 - p1;
-    vec3 edge3 = p3 - p2;
-    float d = dot(normal, p1);
-    float t = - (
-        ( dot(normal, ray.getOrigin()) + d) / (dot(normal, ray.getDirection()) )
+    vec3 edge2 = p3 - p2;
+    vec3 edge3 = p1 - p3;
+    float d = -1 * dot(normal, p1);
+    float t = -1 * (
+        (dot(normal, ray.getOrigin()) + d) / (dot(normal, ray.getDirection()))
         );
     vec3 p = ray.getOrigin() + t * ray.getDirection();
     if (t < tmin || t > tmax) return false;
@@ -32,7 +32,17 @@ bool Triangle::hit(Ray &ray, float tmin, float tmax) const
     vec3 C1 = p - p2;
     vec3 C2 = p - p3;
 
-    return (dot(normal, cross(edge1, C0)) > 0) && (dot(normal, cross(edge2, C1)) > 0) && (dot(normal, cross(edge3, C2)) > 0);
+    if (! ((dot(normal, cross(edge1, C0)) > 0) && (dot(normal, cross(edge2, C1)) > 0) && (dot(normal, cross(edge3, C2)) > 0)) ) return false;
+
+    shared_ptr<HitRecord> hitRecord = make_shared<HitRecord>();
+    hitRecord->t = t;
+    hitRecord->p = ray.pointAt(hitRecord->t); // Punt de intersecció
+    hitRecord->normal = normalize(cross(edge1, edge2)); // Normal del triangle
+    hitRecord->mat = material;
+
+    ray.insertHit(hitRecord);
+
+    return true;
 }
 
 vec3 Triangle::calculateNormal() const 
