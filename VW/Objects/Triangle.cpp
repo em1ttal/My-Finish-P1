@@ -54,7 +54,8 @@ vec3 Triangle::calculateNormal() const
 
 bool Triangle::allHits(Ray &ray, float tmin, float tmax) const
 {
-    return false;
+    // As the triangle is a 2D object, we can't have more than one hit
+    return hit(ray, tmin, tmax);
 }
 
 void Triangle::update(int nframe) 
