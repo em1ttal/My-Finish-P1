@@ -8,6 +8,7 @@
 
 #include "Object.hh"
 #include "Face.hh"
+#include "Triangle.hh"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ private:
     QString nom;
     vector<Face> cares; // facees o cares de l'objecte
     vector<vec4> vertexs; // vertexs de l'objecte sense repetits
+    vector<Triangle> triangles; // triangles de l'objecte
 
     void load(QString filename);
     void makeTriangles();

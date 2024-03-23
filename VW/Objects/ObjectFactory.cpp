@@ -18,6 +18,9 @@ shared_ptr<Object> ObjectFactory::createObject(OBJECT_TYPES t)
     case TRIANGLE:
         o = make_shared<Triangle>();
         break;  
+    case MESH:
+        o = make_shared<Mesh>();
+        break;
     default:
         break;
     }
@@ -37,6 +40,9 @@ shared_ptr<Object> ObjectFactory::createObject( QString s, OBJECT_TYPES t) {
     case TRIANGLE:
         o = make_shared<Triangle>();
         break;    
+    case MESH:
+        o = make_shared<Mesh>();
+        break;
     default:
         break;
     }

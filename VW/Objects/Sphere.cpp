@@ -25,7 +25,7 @@ bool Sphere::hit(Ray &raig, float tmin, float tmax) const {
             hit->p = raig.pointAt(hit->t);
             hit->normal = (hit->p - center) / radius;
             hit->mat = material;
-            raig.addHit(hit);
+            raig.insertHit(hit);
             return true;
         }
         temp = (-b + sqrt(discriminant)) / a;
@@ -34,7 +34,7 @@ bool Sphere::hit(Ray &raig, float tmin, float tmax) const {
             hit->p = raig.pointAt(hit->t);
             hit->normal = (hit->p - center) / radius;
             hit->mat= material;
-            raig.addHit(hit);
+            raig.insertHit(hit);
             return true;
         }
     }

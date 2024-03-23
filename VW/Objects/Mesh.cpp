@@ -16,19 +16,51 @@ Mesh::~Mesh() {
 }
 
 void Mesh::makeTriangles() {
-    // TO DO Tutorial 1: A implementar
+    // TO DO Fase 1: A implementar
+    triangles.clear();
+    for (const auto& face : cares) {
+        vec4 v0 = vertexs[face.idxVertices[0]];
+        vec4 v1 = vertexs[face.idxVertices[1]];
+        vec4 v2 = vertexs[face.idxVertices[2]];
+        vec3 p0 = vec3(v0.x, v0.y, v0.z);
+        vec3 p1 = vec3(v1.x, v1.y, v1.z);
+        vec3 p2 = vec3(v2.x, v2.y, v2.z);
+        Triangle triangle(p0, p1, p2);
+        triangles.push_back(triangle);
+    }
 }
 
+bool Mesh::hit(Ray& raig, float tmin, float tmax) const {
+    bool hit = false;
+    float aux = tmax;
+    shared_ptr<HitRecord> closest = nullptr;
+    for (const auto& triangle : triangles) {
+        if (triangle.hit(raig, tmin, aux)) {
+            hit = true;
+            aux = raig.getHitRecords()[0]->t;
+            closest = raig.getHitRecords()[0];
+        }
+    }
+    if (closest)
+    {
+        raig.addHit0(closest);
+    }
+    
 
-bool Mesh::hit(Ray &raig, float tmin, float tmax) const {
-
-    // TODO Tutorial 1: A implementar
-    return false;
-
+    return hit;
 }
+
 bool Mesh::allHits(Ray& raig, float tmin, float tmax) const {
     // TODO Tutorial 1: A implementar
-    return false;
+    bool hits = false;
+
+    for (const auto& triangle : triangles) {
+        if (triangle.hit(raig, tmin, tmax)) {
+            raig.insertHit(raig.getHit(0));
+            hits = true;
+        }
+    }
+    return hits;
 }
 
 
@@ -89,6 +121,7 @@ void Mesh::load (QString fileName) {
                 }
             }
             file.close();
+            makeTriangles();
         } else {
             qWarning("Boundary object file can not be opened.");
         }
