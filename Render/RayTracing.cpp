@@ -21,20 +21,23 @@ void RayTracing::play() {
         for (int x = 0; x < width; x++) {
 
             //TODO TUTORIAL 2: mostrejar més rajos per pixel segons el valor de "samples"
-
-            float u = (float(x)) / float(width);
-            float v = (float(height -y)) / float(height);
             vec3 color(0, 0, 0);
+            for (int s = 0; s < setup->getSamples(); s++) {
+                float u = ((float(x)) / float(width)) + glm::linearRand(float(0), 1/float(width));
+                float v = (float(height -y)) / float(height) + glm::linearRand(-1/float(height), float(0));
+               
+                // CÀLCUL DEL RAIG EN COORDENADES DE MON
+                Ray r = camera->computeRay(u, v);
 
-            // CÀLCUL DEL RAIG EN COORDENADES DE MON
-            Ray r = camera->computeRay(u, v);
-
-            // CÀLCUL DEL COLOR FINAL DEL PIXEL
-            color = this->getColorPixel(r);
+                // CÀLCUL DEL COLOR FINAL DEL PIXEL
+                color += this->getColorPixel(r);
+            }
+            if (setup->getSamples() > 1) color /= float(setup->getSamples());
 
             // TODO TUTORIAL 2: Gamma correction
-
+            color = vec3(sqrt(color.r), sqrt(color.g), sqrt(color.b));
             color *= 255;
+            color = glm::clamp(color, vec3(0.0f), vec3(255.0f));
             setPixel(x, y, color);
         }
     }
