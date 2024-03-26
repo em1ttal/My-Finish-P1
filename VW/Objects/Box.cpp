@@ -112,7 +112,6 @@ void Box::read(const QJsonObject &json)
 
 void Box::write(QJsonObject &json) const
 {
-    /*
     Object::write(json);
     QJsonArray p1Array;
     p1Array.push_back(p1[0]);
@@ -124,16 +123,13 @@ void Box::write(QJsonObject &json) const
     p2Array.push_back(p2[1]);
     p2Array.push_back(p2[2]);
     json["p2"] = p2Array;
-    */
 }
 
 void Box::print(int indentation) const
 {
-    /*
-    string i(indentation, ' ');
-    cout << i << "Box" << endl;
-    cout << i << "p1: " << p1 << endl;
-    cout << i << "p2: " << p2 << endl;
     Object::print(indentation);
-    */
+
+    const QString indent(indentation * 2, ' ');
+    QTextStream(stdout) << indent << "punt_min: " << p1.x << ", " << p1.y << ", " << p1.z << "\n";
+    QTextStream(stdout) << indent << "punt_max: " << p2.x << ", " << p2.y << ", " << p2.z << "\n";
 }
