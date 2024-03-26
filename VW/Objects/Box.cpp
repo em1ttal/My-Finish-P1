@@ -10,7 +10,7 @@ Box::Box(vec3 p1, vec3 p2) {
     this->p2 = p2;
 }
 
-bool Box::hit(Ray &ray, float tmin, float tmax) const
+bool Box::hit(Ray &ray, float tmin, float tmax, bool bounding) const
 {
     float tnear = -INFINITY;
     float tfar = INFINITY;
@@ -31,7 +31,7 @@ bool Box::hit(Ray &ray, float tmin, float tmax) const
     // Calcula la normal basada en el punt de intersecció.
     hit->normal = calculateNormal(hit->p);
     hit->mat = material;
-    ray.insertHit(hit);
+    if (!bounding) ray.insertHit(hit);
     return true;
 }
 

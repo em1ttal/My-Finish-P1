@@ -16,7 +16,7 @@ class Object: public Hittable, public Animable, public Serializable {
     virtual ~Object() {};
 
     // Metodes a implementar en les classes filles: son  metodes abstractes
-    virtual bool hit(Ray& r, float tmin, float tmax) const override = 0;
+    virtual bool hit(Ray& r, float tmin, float tmax, bool bounding=false) const override = 0;
     virtual bool allHits(Ray& r, float tmin, float tmax) const override = 0;
 
     virtual void update(int nframe) override = 0;

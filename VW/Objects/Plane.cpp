@@ -18,7 +18,7 @@ Plane::Plane(vec3 normal, float d) : Object() {
         this->point = vec3(-d/normal.x, 0.0, 0.0);
 };
 
-bool Plane::hit(Ray &raig, float tmin, float tmax) const{
+bool Plane::hit(Ray &raig, float tmin, float tmax, bool bounding) const{
 
     shared_ptr<HitRecord> info = make_shared<HitRecord>();
 

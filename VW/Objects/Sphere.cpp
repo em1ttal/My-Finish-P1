@@ -10,7 +10,7 @@ Sphere::Sphere(vec3 cen, float r)  {
     radius = r;
 }
 
-bool Sphere::hit(Ray &raig, float tmin, float tmax) const {
+bool Sphere::hit(Ray &raig, float tmin, float tmax, bool bounding) const {
     shared_ptr<HitRecord> hit = make_shared<HitRecord>();
 
     vec3 oc = raig.getOrigin() - center;
@@ -25,7 +25,7 @@ bool Sphere::hit(Ray &raig, float tmin, float tmax) const {
             hit->p = raig.pointAt(hit->t);
             hit->normal = (hit->p - center) / radius;
             hit->mat = material;
-            raig.insertHit(hit);
+            if (!bounding) raig.insertHit(hit);
             return true;
         }
         temp = (-b + sqrt(discriminant)) / a;
@@ -34,7 +34,7 @@ bool Sphere::hit(Ray &raig, float tmin, float tmax) const {
             hit->p = raig.pointAt(hit->t);
             hit->normal = (hit->p - center) / radius;
             hit->mat= material;
-            raig.insertHit(hit);
+            if (!bounding) raig.insertHit(hit);
             return true;
         }
     }

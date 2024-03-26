@@ -65,10 +65,10 @@ void Mesh::makeBoundingSphere()
     boundingSphere = Sphere(center, radius);
 }
 
-bool Mesh::hit(Ray& raig, float tmin, float tmax) const {
+bool Mesh::hit(Ray& raig, float tmin, float tmax, bool bounding) const {
     bool hit = false;
-    if (!boundingBox.hit(raig, tmin, tmax)) return false;
-    //if (!boundingSphere.hit(raig, tmin, tmax)) return false;
+    //if (!boundingBox.hit(raig, tmin, tmax, true)) return false;
+    if (!boundingSphere.hit(raig, tmin, tmax, true)) return false;
     float aux = tmax;
     shared_ptr<HitRecord> closest = nullptr;
     for (const auto& triangle : triangles) {

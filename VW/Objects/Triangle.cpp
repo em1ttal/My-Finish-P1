@@ -16,7 +16,7 @@ Triangle::Triangle(vec3 p1, vec3 p2, vec3 p3)
     normal = calculateNormal();
 }
 
-bool Triangle::hit(Ray &ray, float tmin, float tmax) const
+bool Triangle::hit(Ray &ray, float tmin, float tmax, bool bounding) const
 {
     vec3 edge1 = p2 - p1;
     vec3 edge2 = p3 - p2;

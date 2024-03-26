@@ -32,7 +32,7 @@ public:
     // TO DO Funcio que calcula la interseccio del raig r amb l'escena. Guarda la informacio
     // del punt d'interseccio més proper a t_min del Raig, punt que està entre t_min i t_max del Raig.
     // Retorna cert si existeix la interseccio, fals, en cas contrari
-    virtual bool hit(Ray& raig, float tmin, float tmax) const override;
+    virtual bool hit(Ray& raig, float tmin, float tmax, bool bounding = false) const override;
 
     // TO DO: Mètode que retorna totes les interseccions que es troben al llarg del raig
     virtual bool allHits(Ray& r, float tmin, float tmax) const override;

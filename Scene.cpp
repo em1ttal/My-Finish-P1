@@ -7,7 +7,7 @@ Scene::Scene()
 }
 
 
-bool Scene::hit(Ray &raig, float tmin, float tmax) const {
+bool Scene::hit(Ray &raig, float tmin, float tmax, bool bounding) const {
     // TO DO TUTORIAL 0 i TUTORIAL 1:
     // Heu de codificar la vostra solucio per aquest metode substituint el 'return true'
     // Una possible solucio es cridar el mètode "hit" per a tots els objectes i quedar-se amb la interseccio

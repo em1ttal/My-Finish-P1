@@ -11,7 +11,7 @@ public:
 
     // Funcio que retorna la intersecció més propera al t_min del raig. La intersecció
     // estarà entre t_min i t_max
-     virtual bool hit (Ray& r, float tmin, float tmax) const = 0;
+     virtual bool hit (Ray& r, float tmin, float tmax, bool bounding = false) const = 0;
 
 
     // Mètode que retorna totes les interseccions que es troben al llarg del raig entre tmin i tmax
