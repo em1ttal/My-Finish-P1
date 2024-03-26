@@ -9,6 +9,8 @@
 #include "Object.hh"
 #include "Face.hh"
 #include "Triangle.hh"
+#include "Box.hh"
+#include "Sphere.hh"
 
 using namespace std;
 
@@ -36,8 +38,12 @@ private:
     vector<Face> cares; // facees o cares de l'objecte
     vector<vec4> vertexs; // vertexs de l'objecte sense repetits
     vector<Triangle> triangles; // triangles de l'objecte
+    Box boundingBox; // bounding elements
+    Sphere boundingSphere;
 
     void load(QString filename);
     void makeTriangles();
+    void makeBoundingBox();
+    void makeBoundingSphere();
 };
 

@@ -26,7 +26,7 @@ bool Scene::hit(Ray &raig, float tmin, float tmax) const {
     }
     if (closest)
     {
-        raig.addHit0(closest);
+        raig.insertHit(closest);
     }
     
 

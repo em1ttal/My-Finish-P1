@@ -12,6 +12,7 @@ Mesh::Mesh(const QString &fileName): Object()
 Mesh::~Mesh() {
     if (cares.size() > 0) cares.clear();
     if (vertexs.size() > 0) vertexs.clear();
+    if (triangles.size() > 0) triangles.clear();
 
 }
 
@@ -26,12 +27,48 @@ void Mesh::makeTriangles() {
         vec3 p1 = vec3(v1.x, v1.y, v1.z);
         vec3 p2 = vec3(v2.x, v2.y, v2.z);
         Triangle triangle(p0, p1, p2);
+        triangle.setMaterial(this -> getMaterial());
         triangles.push_back(triangle);
     }
 }
 
+void Mesh::makeBoundingBox()
+{
+    // TO DO Fase 1: A implementar
+    vec3 pmin = vec3(FLT_MAX, FLT_MAX, FLT_MAX);
+    vec3 pmax = vec3(-FLT_MAX, -FLT_MAX, -FLT_MAX);
+    for (const auto& vertex : vertexs) {
+        pmin.x = std::min(pmin.x, vertex.x);
+        pmin.y = std::min(pmin.y, vertex.y);
+        pmin.z = std::min(pmin.z, vertex.z);
+        pmax.x = std::max(pmax.x, vertex.x);
+        pmax.y = std::max(pmax.y, vertex.y);
+        pmax.z = std::max(pmax.z, vertex.z);
+    }
+    boundingBox = Box(pmin, pmax);
+}
+
+void Mesh::makeBoundingSphere()
+{
+    // TO DO Fase 1: A implementar
+    vec3 center = vec3(0.0f, 0.0f, 0.0f);
+    float radius = 0.0f;
+    for (const auto& vertex : vertexs) {
+        center += vec3(vertex.x, vertex.y, vertex.z);
+    }
+    center /= vertexs.size();
+    for (const auto& vertex : vertexs) {
+        vec3 p = vec3(vertex.x, vertex.y, vertex.z);
+        float d = length(p - center);
+        if (d > radius) radius = d;
+    }
+    boundingSphere = Sphere(center, radius);
+}
+
 bool Mesh::hit(Ray& raig, float tmin, float tmax) const {
     bool hit = false;
+    if (!boundingBox.hit(raig, tmin, tmax)) return false;
+    //if (!boundingSphere.hit(raig, tmin, tmax)) return false;
     float aux = tmax;
     shared_ptr<HitRecord> closest = nullptr;
     for (const auto& triangle : triangles) {
@@ -43,7 +80,7 @@ bool Mesh::hit(Ray& raig, float tmin, float tmax) const {
     }
     if (closest)
     {
-        raig.addHit0(closest);
+        raig.insertHit(closest);
     }
     
 
@@ -122,6 +159,8 @@ void Mesh::load (QString fileName) {
             }
             file.close();
             makeTriangles();
+            makeBoundingBox();
+            makeBoundingSphere();
         } else {
             qWarning("Boundary object file can not be opened.");
         }
