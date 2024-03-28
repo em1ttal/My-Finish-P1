@@ -13,7 +13,20 @@ class ShadingStrategy {
     };
 
     // TUTORIAL 2: Calcula si el punt "point" és a l'ombra segons si el flag està activat o no
-    // float computeShadow(shared_ptr<Light> light, vec3 point);
+    float computeShadow(shared_ptr<Scene> scene, shared_ptr<Light> light, vec3 point) 
+    {
+        vec3 L = normalize(light->vectorL(point));
+        point += 0.01f;
+        Ray shadowRay(point,L);
+        float t_min = 0.00000001f;
+        float t_max = light->distanceToLight(point);
+
+        if (scene->hit(shadowRay, t_min, t_max, false)) {
+            return 0.0f;
+        }
+
+        return 1.0f;
+    };
 
     virtual ~ShadingStrategy() {};
 };
