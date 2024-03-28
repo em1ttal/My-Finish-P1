@@ -131,6 +131,8 @@ void MainWindow::on_valNHits_stateChanged()
     visSetUp->setNHints(ui->valNHits->isChecked());
     if (ui->valNHits->isChecked()) {
         builder->activaNColorShader();
+    } else {
+        builder->activaColorShading();
     }
 }
 
