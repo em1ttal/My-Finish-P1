@@ -1,7 +1,7 @@
 #include "ColorShading.hh"
 
 
-vec3 ColorShading::shading(shared_ptr<Scene> scene, vector<shared_ptr<HitRecord>> infos, vec3 lookFrom, bool shadow) {
+vec3 ColorShading::shading(shared_ptr<Scene> scene, vector<shared_ptr<HitRecord>> infos, vec3 lookFrom, bool shadow, vector<shared_ptr<Light>> lights, vec3 globalLight) {
     if (!infos.empty()) {
             auto m = infos[0]->mat;
             return m->Kd;

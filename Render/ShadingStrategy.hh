@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Scene.hh"
+#include "Light.hh"
 
 class ShadingStrategy {
  public:
     // TODO: Fase 2: Canviar el mètode per passar les llums per calcular el shading
-    virtual vec3 shading(shared_ptr<Scene> scene, vector<shared_ptr<HitRecord>> info, vec3 lookFrom, bool shadow) {
+    virtual vec3 shading(shared_ptr<Scene> scene, vector<shared_ptr<HitRecord>> info, vec3 lookFrom, bool shadow, vector<shared_ptr<Light>> lights, vec3 globalLight) {
 
 
         return vec3(0.0, 0.0, 0.0);

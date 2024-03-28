@@ -86,6 +86,7 @@ set(SOURCES
     GUI/CameraMenu.cpp
     GUI/Label.cpp
     GUI/MainWindow.cpp
+    Render/BlinnPhongShading.cpp
     Render/Camera.cpp
     Render/ColorShading.cpp
     Render/NormalShading.cpp
@@ -128,6 +129,7 @@ set(HEADERS
     Rays/HitRecord.hh
     Rays/Hittable.hh
     Rays/Ray.hh
+    Render/BlinnPhongShading.hh
     Render/Camera.hh
     Render/ColorShading.hh
     Render/NormalShading.hh

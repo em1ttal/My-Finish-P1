@@ -88,7 +88,7 @@ vec3 RayTracing::getColorPixel(Ray &ray) {
     if (setup -> getNHints()) {
         if (scene -> allHits(ray, ray.getTmin(), ray.getTmax())) {
             if (setup -> getShadingStrategy() != nullptr) {
-                color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
+                color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows(), setup -> getLights(), setup -> getGlobalLight());
                 vec3 factor = ray.getHitRecords()[0] -> mat -> kt;
                 for (int i = 1; i < ray.getHitRecords().size()-1; i++) {
                     factor *= ray.getHitRecords()[i] -> mat -> kt;
@@ -102,7 +102,7 @@ vec3 RayTracing::getColorPixel(Ray &ray) {
         if (scene->hit(ray, ray.getTmin(), ray.getTmax())) {
             // El mètode "hit" desa només el punt més proper a tmin
             if (setup->getShadingStrategy()!=nullptr) {
-                color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows());
+                color = setup -> getShadingStrategy() -> shading(scene, ray.getHitRecords(), setup -> getCamera() -> getLookFrom(), setup -> getShadows(), setup -> getLights(), setup -> getGlobalLight());
             } else {
                 color = ray.getHit(0)->mat->Kd;
             }

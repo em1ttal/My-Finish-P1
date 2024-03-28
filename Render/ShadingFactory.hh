@@ -3,6 +3,7 @@
 #include "ColorShading.hh"
 #include "NormalShading.hh"
 #include "NColorShading.hh"
+#include "BlinnPhongShading.hh"
 
 
 class ShadingFactory

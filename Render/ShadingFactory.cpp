@@ -13,6 +13,9 @@ shared_ptr<ShadingStrategy> ShadingFactory::createShading(SHADING_TYPES t) {
     case NCOLORSHADING:
         s = make_shared<NColorShading>();
         break;
+    case BLINNPHONG:
+        s = make_shared<BlinnPhongShading>();
+        break;
     default:
         s = nullptr;
     }
@@ -24,6 +27,7 @@ ShadingFactory::SHADING_TYPES ShadingFactory::getShadingType(QString name) {
     if (name=="COLORSHADING") return SHADING_TYPES::COLORSHADING;
     if (name=="NORMAL") return SHADING_TYPES::NORMAL;
     if (name=="NCOLORSHADING") return SHADING_TYPES::NCOLORSHADING;
+    if (name=="BLINNPHONG") return SHADING_TYPES::BLINNPHONG;
     return SHADING_TYPES::COLORSHADING;
 }
 
@@ -38,6 +42,9 @@ QString ShadingFactory::getNameType(SHADING_TYPES t) {
     case NCOLORSHADING:
         return (QString("NCOLORSHADING"));
         break;    
+    case BLINNPHONG:
+        return (QString("BLINNPHONG"));
+        break;
     default:
         return(QString(""));
     }
@@ -49,6 +56,10 @@ ShadingFactory::SHADING_TYPES ShadingFactory::getIndexType(shared_ptr<ShadingStr
         return SHADING_TYPES::NORMAL;
     } else if (dynamic_pointer_cast<NColorShading>(m) != nullptr) {
         return SHADING_TYPES::NCOLORSHADING;
+    } else if (dynamic_pointer_cast<NColorShading>(m) != nullptr) {
+        return SHADING_TYPES::NCOLORSHADING;
+    } else if (dynamic_pointer_cast<BlinnPhongShading>(m) != nullptr) {
+        return SHADING_TYPES::BLINNPHONG;
     }
     return SHADING_TYPES::COLORSHADING;
 }
