@@ -75,4 +75,6 @@ public:
 
     void rendering(QImage *image);
     void update(int i);
+
+    bool boundingVolumes(bool show);
 };

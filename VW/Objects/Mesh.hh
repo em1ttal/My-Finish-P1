@@ -31,6 +31,8 @@ public:
     virtual void print(int indentation) const override;
 
     virtual ~Mesh();
+    Box getBoundingBox() const { return boundingBox; }
+    Sphere getBoundingSphere() const { return boundingSphere; }
 private:
 
 

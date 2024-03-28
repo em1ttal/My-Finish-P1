@@ -19,6 +19,8 @@ public slots:
     void activaColorShading();
     void activaNormalShader();
     void activaNColorShader();
+    void activaBoundingVolumes();
+    void desactivaBoundingVolumes();
 signals:
      void settingsChanged();
 };

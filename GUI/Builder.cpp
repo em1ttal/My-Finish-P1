@@ -96,3 +96,19 @@ void Builder::activaNColorShader() {
     } else msgBox.setText("Error creating shading");
     msgBox.exec();
 }
+
+void Builder::activaBoundingVolumes() {
+    QMessageBox msgBox;
+    if (Controller::getInstance()->boundingVolumes(true)) {
+        msgBox.setText("Bounding Volumes Showing");
+    } else msgBox.setText("Error creating volumes");
+    msgBox.exec();
+}
+
+void Builder::desactivaBoundingVolumes() {
+    QMessageBox msgBox;
+    if (Controller::getInstance()->boundingVolumes(false)) {
+        msgBox.setText("Bounding Volumes Not Showing");
+    } else msgBox.setText("Error removing volumes");
+    msgBox.exec();
+}

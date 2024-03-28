@@ -74,3 +74,22 @@ void Scene::setDimensions(vec3 p1, vec3 p2) {
 void Scene::aplicaTG(shared_ptr<TG> tg) {
     // TO DO
 }
+
+bool Scene::showBoundingVolumes(bool show) {
+    if (show)
+    {
+        for (const auto& obj : objects)
+        {
+            if (dynamic_cast<Mesh*>(obj.get()) == nullptr) continue;
+            objects.push_back(make_shared<Box>(dynamic_pointer_cast<Mesh>(obj)->getBoundingBox()));
+            //objects.push_back(make_shared<Sphere>(dynamic_pointer_cast<Mesh>(obj)->getBoundingSphere()));
+        }
+    } else {
+        for (const auto& obj : objects)
+        {
+            if (dynamic_cast<Mesh*>(obj.get()) == nullptr) continue;
+            objects.pop_back();
+        }
+    }
+    return true;
+}

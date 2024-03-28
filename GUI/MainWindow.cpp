@@ -140,6 +140,11 @@ void MainWindow::on_valBoundingVolumes_stateChanged()
 {
     auto visSetUp = Controller::getInstance()->getSetUp();
     visSetUp->setBoundingVolumes(ui->valBoundingVolumes->isChecked());
+    if (ui->valBoundingVolumes->isChecked()) {
+        builder->activaBoundingVolumes();
+    } else {
+        builder->desactivaBoundingVolumes();
+    }
 }
 
 void MainWindow::on_valShadows_stateChanged()

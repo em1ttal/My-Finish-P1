@@ -46,6 +46,8 @@ void Mesh::makeBoundingBox()
         pmax.z = std::max(pmax.z, vertex.z);
     }
     boundingBox = Box(pmin, pmax);
+    boundingBox.setMaterial(make_shared<Lambertian>(vec3(1, 0, 0)));
+    boundingBox.getMaterial()->kt = vec3(0.8f);
 }
 
 void Mesh::makeBoundingSphere()
@@ -63,12 +65,14 @@ void Mesh::makeBoundingSphere()
         if (d > radius) radius = d;
     }
     boundingSphere = Sphere(center, radius);
+    boundingSphere.setMaterial(make_shared<Lambertian>(vec3(1, 0, 0)));
+    boundingSphere.getMaterial()->kt = vec3(0.8f);
 }
 
 bool Mesh::hit(Ray& raig, float tmin, float tmax, bool bounding) const {
     bool hit = false;
-    //if (!boundingBox.hit(raig, tmin, tmax, true)) return false;
-    if (!boundingSphere.hit(raig, tmin, tmax, true)) return false;
+    if (!boundingBox.hit(raig, tmin, tmax, true)) return false;
+    //if (!boundingSphere.hit(raig, tmin, tmax, true)) return false;
     float aux = tmax;
     shared_ptr<HitRecord> closest = nullptr;
     for (const auto& triangle : triangles) {
@@ -90,7 +94,8 @@ bool Mesh::hit(Ray& raig, float tmin, float tmax, bool bounding) const {
 bool Mesh::allHits(Ray& raig, float tmin, float tmax) const {
     // TODO Tutorial 1: A implementar
     bool hits = false;
-
+    if (!boundingBox.hit(raig, tmin, tmax, true)) return false;
+    //if (!boundingSphere.hit(raig, tmin, tmax, true)) return false;
     for (const auto& triangle : triangles) {
         if (triangle.hit(raig, tmin, tmax)) {
             raig.insertHit(raig.getHit(0));

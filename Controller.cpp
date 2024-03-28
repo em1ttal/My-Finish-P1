@@ -100,3 +100,8 @@ bool Controller::createShading(ShadingFactory::SHADING_TYPES t) {
 void Controller::update(int i) {
     scene->update(i);
 }
+
+bool Controller::boundingVolumes(bool show) {
+    scene->showBoundingVolumes(show);
+    return true;
+}

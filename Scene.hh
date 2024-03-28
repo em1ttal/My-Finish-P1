@@ -1,6 +1,7 @@
 #pragma once
 
 #include "VW/Objects/Object.hh"
+#include "VW/Objects/Mesh.hh"
 
 class Scene: public Hittable, public Animable
 {
@@ -47,5 +48,6 @@ public:
 
     void clear() { objects.clear();};
 
+    bool showBoundingVolumes(bool show);
 };
 
